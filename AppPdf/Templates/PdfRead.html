@@ -1,0 +1,120 @@
+ {% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+<div style="background: url('/media/img/images/homepage.jpg'); background-repeat:no-repeat;background-size:cover;height: 541px ">
+  
+<br>
+<br>
+<br>
+<div class="container" style="background-color: white;width: 70%;" >
+<form class="form-horizontal" action='/PdfRead/' enctype="multipart/form-data"  method="POST" id="form1">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: #868397">UPLOAD PDF</h2>
+    <hr style="border-top: 3px solid #868397;">
+  </div>
+  </center> 
+
+  <div class="form-row">
+    <div class="col-md-12" style="margin-bottom: 20px">
+      <input type="file" accept=".pdf" class="form-control" name="FileName" id="FileName" required>
+      
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-12" style="margin-bottom: 20px">
+      <select name="Languages" id="Languages" class="form-control">
+        <option value="Choose">Choose</option>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="gu">Gujarati</option>
+        <option value="mr">Marathi</option>
+        <option value="kn">Kannada</option>
+        <option value="te">Telugu</option>
+        
+
+        
+      </select>
+      
+    </div>
+  </div>
+
+
+   <div class="form-row">
+    <center>
+    <div class="col-md-12" style="margin-bottom: 20px">
+      <input type="button" onclick="validate();" name="ButtonApply" value="Submit &#8250;&#8250;"  id="ButtonApply" class="btn btn-round btn-success" />      
+    </div>
+    </center>
+  </div>
+
+
+
+</form>
+
+</div>
+
+  <br>
+
+ <br>
+</div>
+
+<script type="text/javascript">
+  
+  function validate() 
+  {
+
+    if(document.getElementById('FileName').value != "")
+    {
+        var fileInput = document.getElementById('FileName');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.pdf)$/i;
+        if(!allowedExtensions.exec(filePath))
+        {
+            alert('Kindly upload file having extensions .pdf only.');
+            fileInput.value = '';
+            return false;
+        }
+        else
+        {
+          if(document.getElementById('Languages').value != "Choose")
+          {
+              document.getElementById('form1').submit()
+              return true;
+          }
+          else
+          {
+            alert('Kindly Select a Language.');
+          }
+
+          //alert('Accept');
+          
+        }
+    }
+    else
+    {
+        alert('Kindly Select File First.');
+    }
+
+  }
+
+
+</script>
+
+
+    {% endblock%}
+
+
+    
+
+
+    

@@ -1,0 +1,37 @@
+ {% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+<div style="background: url('/media/img/images/homepage.jpg'); background-repeat:no-repeat;background-size:cover; color: white; height: 541px;  ">
+
+
+<audio controls autoplay width='50%' height='40%' >
+  <source src="\media\Audio\New Microsoft Office Word Document17-6-2021-11-47-22.mp3" type="audio/mp3"></source>
+</audio>
+
+
+
+  
+</div>
+
+<script type="text/javascript">
+  
+  function PlayAudio(me)
+  {
+    var audio = me.id;
+    document.getElementById('audiotag1').play();
+  }
+
+
+
+
+</script>
+
+
+    {% endblock%}
